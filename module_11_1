@@ -1,0 +1,23 @@
+# тановили через консоль библиотеку requests: pip install requests
+from http.client import responses
+
+import requests
+
+# url='https://api.example.com/data'
+url='https://ya.ru'
+
+
+response = requests.get(url)
+print(response.status_code)
+
+if response.status_code == 200:
+    # data_1 = response.text
+    data_2 = response.content
+    data_3 = response.headers
+    # print(data_1)
+    print()
+    print()
+    print(data_2, '\n', '\n', '\n',  data_3)
+
+else:
+    print(f'Ошибка запроса: {response.status_code}')
