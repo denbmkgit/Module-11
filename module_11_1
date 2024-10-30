@@ -1,7 +1,9 @@
-# тановили через консоль библиотеку requests: pip install requests
+# Установили через консоль библиотеку requests: pip install requests
 from http.client import responses
 
 import requests
+import pandas as pd
+
 
 # url='https://api.example.com/data'
 url='https://ya.ru'
@@ -21,3 +23,23 @@ if response.status_code == 200:
 
 else:
     print(f'Ошибка запроса: {response.status_code}')
+print('\n','\n','\n',)
+
+df = pd.DataFrame(
+{
+        "Name": [
+            "Braund, Mr. Owen Harris",
+            "Allen, Mr. William Henry",
+            "Bonnell, Miss. Elizabeth",
+        ],
+        "Age": [22, 35, 58],
+        "Sex": ["male", "male", "female"],
+    }
+
+)
+
+print(df['Age'])
+print()
+print(df['Sex'])
+print()
+print(df['Age'].max())
