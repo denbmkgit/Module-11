@@ -3,6 +3,8 @@ from http.client import responses
 
 import requests
 import pandas as pd
+from PIL import Image
+import sys
 
 
 # url='https://api.example.com/data'
@@ -43,3 +45,32 @@ print()
 print(df['Sex'])
 print()
 print(df['Age'].max())
+
+
+
+
+
+image = Image.open('jelly.jpg')
+image.show()
+
+image = Image.open('jelly.jpg')
+r, g, b = image.split()
+histogram = image.histogram()
+print(image)
+print(r, g, b)
+print(histogram)
+
+image = Image.open('jelly.jpg')
+cropped = image.crop((0, 80, 200, 400))
+cropped.save('C:/Users/Д.Горецкий/PycharmProject/pythonProject_11/cropped_jelly.png')
+
+
+
+
+try:
+    jelly = Image.open("jelly.jpg")
+except IOError:
+    print("Unable to load image")
+    sys.exit(1)
+
+jelly.save('jelly.png', 'png')
