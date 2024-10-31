@@ -1,0 +1,19 @@
+from pprint import pprint
+
+class MyClass:
+    def __init__(self):
+        self.attr_1 = 'attr_1'
+        self.attr_2 = 'attr_2'
+
+
+    def introspection_info(obj):
+        return {'type': str(type(obj)).split("'")[1]}, dir(obj)
+
+
+number_info = MyClass.introspection_info(42)
+
+
+attrebutes = [attr for attr in dir(number_info) if not callable(getattr(number_info, attr)) and not attr.startswith('__')]
+print(attrebutes)
+print(dir(number_info))
+# pprint(number_info)
