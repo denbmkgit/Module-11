@@ -1,19 +1,27 @@
 from pprint import pprint
 
-class MyClass:
-    def __init__(self):
-        self.attr_1 = 'attr_1'
-        self.attr_2 = 'attr_2'
+
+def introspection_info(obj):
+
+    obj_type = type(obj).__name__
+
+    attributes = [attr for attr in dir(obj) if not callable(getattr(obj, attr)) and not attr.startswith('__')]
+
+    methods = [method for method in dir(obj) if callable(getattr(obj, method))]
+
+    module = obj.__class__.__module__
+
+    info = {'type': obj_type, 'attributes': attributes, 'methods': methods, 'module': module},
+            # 'other_properties': other_properties}
+
+    return info
 
 
-    def introspection_info(obj):
-        return {'type': str(type(obj)).split("'")[1]}, dir(obj)
-
-
-number_info = MyClass.introspection_info(42)
-
-
-attrebutes = [attr for attr in dir(number_info) if not callable(getattr(number_info, attr)) and not attr.startswith('__')]
-print(attrebutes)
-print(dir(number_info))
-# pprint(number_info)
+number_info = introspection_info(42)
+print(number_info)
+print('\n')
+number_info = introspection_info(True)
+print(number_info)
+print('\n')
+number_info = introspection_info('True')
+print(number_info)
